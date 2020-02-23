@@ -28,4 +28,22 @@ CMS中都有哪些停顿（STW）
 -XX:CMSInitiatingOccupancyFraction=70% (老年代达到70%比例，触发gc)
 -XX:+UseCMSInitiatingOccupancyOnly
 
+参考：
+-server
+    -Xms<heap size>[g|m|k] -Xmx<heap size>[g|m|k]
+    -XX:MaxMetaspaceSize=<metaspace size>[g|m|k]
+    -Xmn<young size>[g|m|k]
+    -XX:SurvivorRatio=<ratio>
+    -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled
+    -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=<percent>
+    -XX:+ScavengeBeforeFullGC -XX:+CMSScavengeBeforeRemark
+    -XX:+PrintGCDateStamps -verbose:gc -XX:+PrintGCDetails -Xloggc:"<path to log>"
+    -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M
+    -Dsun.net.inetaddr.ttl=<TTL in seconds>
+    -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=<path to dump>`date`.hprof
+    -Djava.rmi.server.hostname=<external IP>
+    -Dcom.sun.management.jmxremote.port=<port> 
+    -Dcom.sun.management.jmxremote.authenticate=false 
+    -Dcom.sun.management.jmxremote.ssl=false
+
 
